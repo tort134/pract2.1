@@ -9,5 +9,4 @@ urlpatterns = ([
     path('profile/', profile, name='profile'),
     path('create-request/', create_request, name='create_request'),
     path('delete_request/<int:request_id>/', delete_request, name='delete_request'),
-]
-               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
