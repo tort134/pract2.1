@@ -44,24 +44,6 @@ def register(request):
         form = CustomUserCreationForm()
     return render(request, 'user/register.html', {'form': form})
 
-
-def profile(request):
-    user_requests = Request.objects.filter(user=request.user)
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Профиль успешно обновлён!')
-            return redirect('profile')
-    else:
-        form = ProfileForm(instance=request.user.profile)
-
-    return render(request, 'user/profile.html', {
-        'profile_form': form,
-        'user_requests': user_requests
-    })
-
-
 def create_request(request):
     if request.method == 'POST':
         form = Request(request.POST, request.FILES)
