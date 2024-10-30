@@ -2,14 +2,10 @@
     margin: 0;
     padding: 0;
 }
-@font-face {
-    font-family: Mulish;
-    src: url("fonts/Mulish-Regular.ttf") format("truetype");
-}
 
 body{
-    background: #ffffff;
-    font-family: Mulish;
+    background: black;
+    font-family: sans-serif;
 }
 
 a{
@@ -25,14 +21,14 @@ header{
     align-items: center;
     justify-content: space-between;
     padding: 20px 80px;
-    background: #010101;
-    color: white;
+    background: orange;
+    color: black;
 }
 
 
 header a{
     margin-left: 10px;
-    color: white;
+    color: black;
     font-size: 20px;
 }
 
@@ -43,11 +39,11 @@ header a{
 header button{
     border: none;
     background-color: transparent;
-    color: white;
+    color: black;
     font-size: 20px;
     margin-left: 15px;
     cursor: pointer;
-    font-family: Mulish;
+    font-family: sans-serif;
 }
 
 .header-link{
@@ -56,7 +52,7 @@ header button{
 
 
 header a:hover, header button :hover{
-    color: #919191;
+    color: #2b2b2b;
 }
 
 main {
@@ -81,7 +77,7 @@ main p{
 
     width: 100%;
     padding: 10px;
-    border: 2px solid #ccc;
+    border: 2px solid #2b2b2b;
     border-radius: 4px;
     font-size: 16px;
     transition: border-color 0.3s;
@@ -93,8 +89,8 @@ main p{
 }
 
 .btn {
-    background-color: #000000;
-    color: white;
+    background-color: orange;
+    color: black;
     border: none;
     padding: 15px 50px;
     border-radius: 4px;
@@ -104,7 +100,7 @@ main p{
 }
 
 .btn:hover {
-    background-color: #a7a7a7;
+    background-color: #2b2b2b;
 }
 
 .error-messages {
@@ -125,7 +121,7 @@ main p{
 }
 
 .form-group__checkbox:hover{
-    color: #919191;
+    color: #2b2b2b;
 
 }
 #id_consent{
@@ -145,15 +141,15 @@ main p{
 }
 
 select:hover {
-    border-color: #999;
+    border-color: #2b2b2b;
 }
 
 select:focus {
-    border-color: #333;
+    border-color: #2b2b2b;
 }
 
 select option {
-    color: #999; /
+    color: orange;
 }
 
 select::after {
@@ -189,7 +185,7 @@ select::after {
 }
 
 #file_upload_button{
-    background-color: #000000;
+    background-color: orange;
     border: none;
 }
 
