@@ -1,0 +1,34 @@
+body{
+    background: black;
+}
+
+a{
+    text-decoration: none;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+
+header a{
+    color: black;
+    margin-left: 10px;
+}
+
+header a:hover{
+    color: orange;
+}
+
+main{
+    padding: 20px;
+}
+
+main p{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 25px;
+}

@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Design Pro</title>
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Design pro</h1>
+
+        <div class="links">
+            <a href="">Войти</a>
+            <a href="">Зарегестрироваться</a>
+        </div>
+    </header>
+
+    {% block header %}
+
+    {% endblock %}
+</body>
+</html>
