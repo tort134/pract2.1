@@ -1,3 +1,5 @@
+from cProfile import label
+
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -27,13 +29,12 @@ class CustomUserCreationForm(forms.ModelForm):
     password2 = forms.CharField(widget=forms.PasswordInput(), label='Подтверждение пароля')
     full_name = forms.CharField( label='ФИО',max_length=255,required=True)
     username = forms.CharField(label='Логин',max_length=150,required=True)
-    phone = forms.CharField(label='Телефон', max_length=16, required=True)
 
     consent = forms.BooleanField(required=True, label='Согласие на обработку персональных данных')
 
     class Meta:
         model = User
-        fields = ('username', 'full_name', 'email', 'password1', 'password2', 'consent', 'phone')
+        fields = ('username', 'full_name', 'email', 'password1', 'password2', 'consent')
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
@@ -47,14 +48,6 @@ class CustomUserCreationForm(forms.ModelForm):
             raise ValidationError('ФИО должно содержать только кириллицу, дефисы и пробелы.')
         return full_name
 
-    def clean_phone(self):
-        phone = self.cleaned_data.get('phone')
-        if len(phone) != 16:
-            raise forms.ValidationError("Введите корретный номер телефона в формате +7 *** *** ** **")
-        if not phone.startswith('+7'):
-            raise forms.ValidationError("Номер телефона должен начинаться с +7")
-        return phone
-
     def clean(self):
         cleaned_data = super().clean()
         password1 = cleaned_data.get('password1')
@@ -64,6 +57,8 @@ class CustomUserCreationForm(forms.ModelForm):
             self.add_error('password2', 'Пароли не совпадают.')
 
         return cleaned_data
+
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -47,11 +47,12 @@
     </div>
 
     <div class="form-group">
-         <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
-        {{ form.phone }}
-        {% if form.phone.errors %}
-            <div class="error-messages">{{ form.phone.errors }}</div>
-        {% endif %}
+        <label>Выберите район проживания</label>
+        <select>
+            <option value="apple">Московский</option>
+            <option value="banana">Кирвовский</option>
+            <option value="orange">Томский</option>
+        </select>
     </div>
 
     <div class="form-group__checkbox">
