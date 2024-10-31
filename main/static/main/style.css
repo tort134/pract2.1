@@ -25,14 +25,14 @@ header{
     align-items: center;
     justify-content: space-between;
     padding: 20px 80px;
-    background: #010101;
-    color: white;
+    background: orange;
+    color: black;
 }
 
 
 header a{
     margin-left: 10px;
-    color: white;
+    color: black;
     font-size: 20px;
 }
 
@@ -43,7 +43,7 @@ header a{
 header button{
     border: none;
     background-color: transparent;
-    color: white;
+    color: black;
     font-size: 20px;
     margin-left: 15px;
     cursor: pointer;
@@ -55,14 +55,13 @@ header button{
 }
 
 
-header a:hover, header button :hover{
-    color: #919191;
+header a:hover, header button:hover{
+    color: #bdbdbd;
 }
 
-main {
+main{
     padding: 20px;
 }
-
 
 main p{
     margin-top: 50px;
@@ -77,8 +76,7 @@ main p{
     margin: 20px;
 }
 
-.form-control {
-
+.form-control{
     width: 100%;
     padding: 10px;
     border: 2px solid #ccc;
@@ -92,9 +90,9 @@ main p{
     flex-direction: column;
 }
 
-.btn {
-    background-color: #000000;
-    color: white;
+.btn{
+    background-color: orange;
+    color: black;
     border: none;
     padding: 15px 50px;
     border-radius: 4px;
@@ -104,7 +102,8 @@ main p{
 }
 
 .btn:hover {
-    background-color: #a7a7a7;
+    background-color: black;
+    color: orange;
 }
 
 .error-messages {
@@ -124,10 +123,6 @@ main p{
     font-size: 12px;
 }
 
-.form-group__checkbox:hover{
-    color: #919191;
-
-}
 #id_consent{
     width: 20px;
 }
@@ -144,19 +139,19 @@ main p{
     gap: 10px;
 }
 
-select:hover {
+select:hover{
     border-color: #999;
 }
 
-select:focus {
+select:focus{
     border-color: #333;
 }
 
-select option {
-    color: #999; /
+select option{
+    color: #999;
 }
 
-select::after {
+select::after{
     content: '';
     position: absolute;
     right: 10px;
@@ -164,33 +159,3 @@ select::after {
     transform: translateY(-50%);
     pointer-events: none;
 }
-
-.request{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    margin-top: 30px;
-}
-
-.request h3{
-    font-size: 30px;
-}
-
-.request p{
-    font-size: 20px;
-    margin-bottom: 10px;
-    width: 300px;
-}
-
-.form-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#file_upload_button{
-    background-color: #000000;
-    border: none;
-}
-
-
