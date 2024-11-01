@@ -2,10 +2,14 @@
     margin: 0;
     padding: 0;
 }
+@font-face {
+    font-family: Mulish;
+    src: url("fonts/Mulish-Regular.ttf") format("truetype");
+}
 
 body{
-    background: black;
-    font-family: sans-serif;
+    background: #ffffff;
+    font-family: Mulish;
 }
 
 a{
@@ -43,7 +47,7 @@ header button{
     font-size: 20px;
     margin-left: 15px;
     cursor: pointer;
-    font-family: sans-serif;
+    font-family: Mulish;
 }
 
 .header-link{
@@ -51,14 +55,13 @@ header button{
 }
 
 
-header a:hover, header button :hover{
-    color: #2b2b2b;
+header a:hover, header button:hover{
+    color: #bdbdbd;
 }
 
-main {
+main{
     padding: 20px;
 }
-
 
 main p{
     margin-top: 50px;
@@ -73,11 +76,10 @@ main p{
     margin: 20px;
 }
 
-.form-control {
-
+.form-control{
     width: 100%;
     padding: 10px;
-    border: 2px solid #2b2b2b;
+    border: 2px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
     transition: border-color 0.3s;
@@ -88,7 +90,7 @@ main p{
     flex-direction: column;
 }
 
-.btn {
+.btn{
     background-color: orange;
     color: black;
     border: none;
@@ -100,7 +102,8 @@ main p{
 }
 
 .btn:hover {
-    background-color: #2b2b2b;
+    background-color: black;
+    color: orange;
 }
 
 .error-messages {
@@ -120,10 +123,6 @@ main p{
     font-size: 12px;
 }
 
-.form-group__checkbox:hover{
-    color: #2b2b2b;
-
-}
 #id_consent{
     width: 20px;
 }
@@ -134,57 +133,34 @@ main p{
     align-items: center;
 }
 
+.profile-left-bar{
+    display: flex;
+    flex-direction: column;
+}
+
 .filter{
     align-self: flex-end;
     display: flex;
     gap: 10px;
 }
 
-select:hover {
-    border-color: #2b2b2b;
+select:hover{
+    border-color: #999;
 }
 
-select:focus {
-    border-color: #2b2b2b;
+select:focus{
+    border-color: #333;
 }
 
-select option {
-    color: orange;
+select option{
+    color: #999;
 }
 
-select::after {
+select::after{
     content: '';
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
-}
-
-.request{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    margin-top: 30px;
-}
-
-.request h3{
-    font-size: 30px;
-}
-
-.request p{
-    font-size: 20px;
-    margin-bottom: 10px;
-    width: 300px;
-}
-
-.form-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#file_upload_button{
-    background-color: orange;
-    border: none;
 }

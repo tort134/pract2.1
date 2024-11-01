@@ -2,6 +2,7 @@ from django.urls import path, include
 from .views import user_login, user_logout, register, profile, create_request, delete_request
 from django.conf.urls.static import static
 from django.conf import settings
+
 urlpatterns = ([
     path('login/', user_login, name='login'),
     path('logout/', user_logout, name='logout'),

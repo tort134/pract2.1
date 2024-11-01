@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 import re
-from .models import Request, Category
+from .models import Request, Category, CustomUser
 
 class LoginForm(forms.Form):
     username = forms.CharField(
@@ -20,25 +21,10 @@ class LoginForm(forms.Form):
         label='Пароль'
     )
 
-class CustomUserCreationForm(forms.ModelForm):
-    email = forms.EmailField(required=True)
-    password1 = forms.CharField(widget=forms.PasswordInput(), label='Пароль')
-    password2 = forms.CharField(widget=forms.PasswordInput(), label='Подтверждение пароля')
-    full_name = forms.CharField(
-        label='ФИО',
-        max_length=255,
-        required=True
-    )
-    username = forms.CharField(
-        label='Логин',
-        max_length=150,
-        required=True
-    )
-    consent = forms.BooleanField(required=True, label='Согласие на обработку персональных данных')
-
+class CustomUserCreationForm(UserCreationForm):
     class Meta:
-        model = User
-        fields = ('username', 'full_name', 'email', 'password1', 'password2', 'consent')
+        model = CustomUser
+        fields = ('username', 'full_name', 'email', 'password1', 'password2', 'consent', 'district')
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
@@ -61,6 +47,13 @@ class CustomUserCreationForm(forms.ModelForm):
             self.add_error('password2', 'Пароли не совпадают.')
 
         return cleaned_data
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data['password1'])
+        if commit:
+            user.save()
+        return user
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

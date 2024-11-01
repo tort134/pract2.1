@@ -3,20 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Заявки</title>
     <link rel="stylesheet" href="{% static 'main/style.css' %}">
 </head>
 <body>
     <header>
-        <h1><a class="logo" href="{% url 'index' %}">Design.pro</a></h1>
+        <h1><a class="logo" href="{% url 'index' %}">Design pro</a></h1>
 
         <div class="header-link">
             {% if request.user.is_authenticated %}
-            {% if request.user.is_staff %}
-                <a href="{% url 'admin:index' %}">Перейти в админку</a>
-            {% else %}
-            {% endif %}
-
                 <form method="post" action="{% url 'logout' %}" class="links">
                     {% csrf_token %}
                     <button type="submit">Выйти</button>
@@ -30,7 +25,6 @@
                 </form>
             {% endif %}
         </div>
-
     </header>
     {% block content %}
 
