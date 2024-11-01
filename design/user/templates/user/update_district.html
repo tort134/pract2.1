@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main>
+    <div class="profile-left-bar">
+        <h1>Изменить регион</h1>
+    </div>
+    <div class="profile-form">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.district }}
+            <button type="submit" class="btn">Сохранить</button>
+        </form>
+    </div>
+</main>
+{% endblock %}

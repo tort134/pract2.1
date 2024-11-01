@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .forms import LoginForm, CustomUserCreationForm, RequestForm
+from .forms import LoginForm, CustomUserCreationForm, RequestForm, DistrictForm
 from .models import Request, Profile
 
 def user_login(request):
@@ -51,25 +51,6 @@ def register(request):
     return render(request, 'user/register.html', {'form': form})
 
 
-# def register(request):
-#     if request.method == 'POST':
-#         form = CustomUserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save(commit=False)
-#             user.set_password(form.cleaned_data['password1'])
-#             user.save()
-#             district = form.cleaned_data.get('district')
-#             profile, created = Profile.objects.get_or_create(user=user)
-#             profile.district = district
-#             profile.save()
-#
-#             messages.success(request, 'Вы успешно зарегистрированы! Теперь вы можете войти.')
-#             return redirect('login')
-#     else:
-#         form = CustomUserCreationForm()
-#     return render(request, 'user/register.html', {'form': form})
-
-
 def profile(request):
     status = request.GET.get('status')
 
@@ -83,6 +64,20 @@ def profile(request):
         'selected_status': status
     })
 
+
+def update_district(request):
+    profile = get_object_or_404(Profile, user=request.user)
+
+    if request.method == 'POST':
+        form = DistrictForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Регион успешно изменён!')
+            return redirect('profile')  # Измените это на URL вашей страницы профиля
+    else:
+        form = DistrictForm(instance=profile)
+
+    return render(request, 'user/update_district.html', {'form': form})
 
 def create_request(request):
     if request.method == 'POST':

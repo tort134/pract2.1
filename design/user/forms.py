@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 import re
-from .models import Request, Category, CustomUser
+from .models import Request, Category, CustomUser, Profile
 
 class LoginForm(forms.Form):
     username = forms.CharField(
@@ -74,3 +74,8 @@ class RequestForm(forms.ModelForm):
             if not photo.name.endswith(('.jpg', '.jpeg', '.png', '.bmp')):
                 raise forms.ValidationError('Недопустимый формат файла. Используйте jpg, jpeg, png или bmp.')
         return photo
+
+class DistrictForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['district']

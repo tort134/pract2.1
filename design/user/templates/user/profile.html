@@ -5,7 +5,7 @@
     <div class="profile-left-bar">
         <h1>Ваш профиль</h1>
         <p>Ваш регион: {{ user.district }}</p>
-
+        <a href="{% url 'update_district' %}">Изменить регион</a>
     </div>
 
     <div class="profile-form">
