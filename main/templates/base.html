@@ -3,10 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Заявки</title>
     <link rel="stylesheet" href="{% static 'main/style.css' %}">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 </head>
 <body>
     <header>
@@ -18,15 +16,18 @@
                     {% csrf_token %}
                     <button type="submit">Выйти</button>
                 </form>
+                <a href="{% url 'profile' %}">Профиль</a>
+
             {% else %}
                 <form class="links">
                     <a href="{% url 'login' %}">Войти</a>
-                    <a href="{% url 'register' %}">Зарегестрироваться</a>
+                    <a href="{% url 'register' %}">Зарегистрироваться</a>
                 </form>
             {% endif %}
         </div>
     </header>
     {% block content %}
+
     {% endblock %}
 </body>
 </html>

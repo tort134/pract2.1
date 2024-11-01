@@ -1,10 +1,9 @@
-from cProfile import label
-
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 import re
+from .models import Request, Category
 
 class LoginForm(forms.Form):
     username = forms.CharField(
@@ -14,7 +13,6 @@ class LoginForm(forms.Form):
         }),
         label='Имя пользователя'
     )
-
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={
             'class': 'form-control',
@@ -27,9 +25,8 @@ class CustomUserCreationForm(forms.ModelForm):
     email = forms.EmailField(required=True)
     password1 = forms.CharField(widget=forms.PasswordInput(), label='Пароль')
     password2 = forms.CharField(widget=forms.PasswordInput(), label='Подтверждение пароля')
-    full_name = forms.CharField( label='ФИО',max_length=255,required=True)
-    username = forms.CharField(label='Логин',max_length=150,required=True)
-
+    full_name = forms.CharField(label='ФИО', max_length=255, required=True)
+    username = forms.CharField(label='Логин', max_length=150, required=True)
     consent = forms.BooleanField(required=True, label='Согласие на обработку персональных данных')
 
     class Meta:
@@ -58,9 +55,22 @@ class CustomUserCreationForm(forms.ModelForm):
 
         return cleaned_data
 
-
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs.update({'class': 'form-control'})
+
+
+class RequestForm(forms.ModelForm):
+    class Meta:
+        model = Request
+        fields = ['title', 'description', 'category', 'photo']
+
+    def clean_photo(self):
+        photo = self.cleaned_data.get('photo')
+        if photo:
+            if photo.size > 2 * 1024 * 1024:  # 2MB
+                raise forms.ValidationError('Размер фото не должен превышать 2MB.')
+            if not photo.name.endswith(('.jpg', '.jpeg', '.png', '.bmp')):
+                raise forms.ValidationError('Недопустимый формат файла. Используйте jpg, jpeg, png или bmp.')
+        return photo
