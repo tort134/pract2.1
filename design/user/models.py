@@ -6,6 +6,11 @@ from django.conf import settings
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    district = models.CharField(max_length=50, choices=[
+        ('Sovietsky', 'Советский'),
+        ('Kirovsky', 'Кировский'),
+        ('Leninsky', 'Ленинский'),
+    ])
 
     def __str__(self):
         return f"Профиль {self.user.username}"

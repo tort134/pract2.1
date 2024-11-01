@@ -136,7 +136,35 @@ main p{
 .profile-left-bar{
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
+
+.profile-chng-distr{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-chng-distr > form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    gap: 40px;
+}
+
+.profile-chng-pswrd{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-chng-pswrd > form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
 
 .filter{
     align-self: flex-end;

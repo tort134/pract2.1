@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 import re
-from .models import Request, Category, CustomUser
+from .models import Request, Category, CustomUser, Profile
 
 class LoginForm(forms.Form):
     username = forms.CharField(
@@ -74,3 +74,29 @@ class RequestForm(forms.ModelForm):
             if not photo.name.endswith(('.jpg', '.jpeg', '.png', '.bmp')):
                 raise forms.ValidationError('Недопустимый формат файла. Используйте jpg, jpeg, png или bmp.')
         return photo
+
+class DistrictForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['district']
+
+class ChangePasswordForm(forms.Form):
+    old_password = forms.CharField(label='Старый пароль', widget=forms.PasswordInput)
+    new_password = forms.CharField(label='Новый пароль', widget=forms.PasswordInput)
+    confirm_password = forms.CharField(label='Подтвердите новый пароль', widget=forms.PasswordInput)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        old_password = cleaned_data.get('old_password')
+        new_password = cleaned_data.get('new_password')
+        confirm_password = cleaned_data.get('confirm_password')
+
+        user = self.initial.get('user')
+
+        if user and not user.check_password(old_password):
+            self.add_error('old_password', 'Старый пароль неверный.')
+
+        if new_password != confirm_password:
+            self.add_error('confirm_password', 'Пароли не совпадают.')
+
+        return cleaned_data
